@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             x:Class="CapstoneProject.Views.CreateTermPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" x:Name="cancelAddTerm" Clicked="cancelAddTerm_Clicked" />
+        <ToolbarItem Text="Save" x:Name="saveTerm" Clicked="saveTerm_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+
+
+
+        <StackLayout Padding="10" Spacing="20">
+            <Entry x:Name="addTermTitle" Placeholder="{Binding TempTitle}"/>
+
+            <Label Text="Start Date"/>
+
+
+
+            <DatePicker  x:Name="StartDatePicker" FontSize="Medium" Date="{Binding StartDate}" >
+                <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                <DatePicker.MinimumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Jan 1 2000</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Dec 31 2050</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MaximumDate>
+            </DatePicker>
+
+
+            <Label Text="End Date"/>
+
+            <DatePicker x:Name="EndDatePicker" FontSize="Medium"  Date="{Binding EndDate}">
+                <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                <DatePicker.MinimumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Jan 1 2000</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Dec 31 2050</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MaximumDate>
+            </DatePicker>
+
+            <Label Text="" x:Name="errorlabel"/>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:CapstoneProject.ViewModels"
+             x:Class="CapstoneProject.Views.TermsPage">
+
+
+
+    <ContentPage.BindingContext>
+        <local:TermsViewModel/>
+    </ContentPage.BindingContext>
+
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" x:Name="AddTerm" Clicked="AddTerm_Clicked"  />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label Text="Current Assessment Count" FontSize="Large" TextColor="Black" HorizontalOptions="Center"/>
+            <Label x:Name="CurrentAssessmentCount" Text="" FontSize="Large" HorizontalOptions="Center"/>
+            <SearchBar Placeholder="Search Terms" Text="" CancelButtonColor="red"  x:Name="TermSearchBar" SearchButtonPressed="TermSearchBar_SearchButtonPressed" TextChanged="TermSearchBar_TextChanged" />
+            <Button Text="Reset Search" x:Name="ResetSearch_button" Clicked="ResetSearch_button_Clicked" CornerRadius="10" />
+            <Button Text="Report Page" x:Name="GotoReport" Clicked="GotoReport_Clicked" CornerRadius="10" />
+            <Label Text="Term List" FontSize="50" TextColor="Black" Padding="10"/>
+
+
+            <CollectionView x:Name="TermsListView"
+                ItemsSource="{Binding TermsList}">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" >
+                            <Grid Padding="10">
+                                <Label Text="{Binding TermName}"                                
+                                            LineBreakMode="NoWrap"                               
+                                            FontSize="16" />
+                                <DatePicker Grid.Column="1" Date="{Binding TermStart}"
+                                            HorizontalOptions="Center"
+                                            IsEnabled="False"  
+                                            FontSize="13" />
+                                <DatePicker Grid.Column="2" Date="{Binding TermEnd}"
+                                            HorizontalOptions="Center"
+                                            IsEnabled="False"
+                                            FontSize="13" />
+
+                            </Grid>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             x:Class="CapstoneProject.Views.CreateCoursePage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" x:Name="cancelAddCourse"  Clicked="cancelAddCourse_Clicked"/>
+        <ToolbarItem Text="Save" x:Name="saveAddCourse" Clicked="saveAddCourse_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Padding="10" Spacing="20">
+            <Entry x:Name="addCourseTitle" Placeholder="Course Title"/>
+
+            <Label Text="Start Date"/>
+
+            <DatePicker  FontSize="Medium" x:Name="CourseStartDate"  Date="{Binding StartDate}">
+                <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                <DatePicker.MinimumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Jan 1 2000</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Dec 31 2050</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MaximumDate>
+            </DatePicker>
+
+            <Label Text="End Date"/>
+
+            <DatePicker FontSize="Medium" x:Name="CourseEndDate"  Date="{Binding EndDate}">
+                <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                <DatePicker.MinimumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Jan 1 2000</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Dec 31 2050</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MaximumDate>
+            </DatePicker>
+
+            <Label Text="Course Status:"/>
+            <Picker x:Name="CourseStatusPicker" FontSize="Medium"   ItemsSource="{Binding CourseStatus}"/>
+
+            <Label Text="Course Instructor Info:"/>
+
+            <Entry Placeholder="Name" x:Name="InstructorName"  />
+
+            <Entry Placeholder="Phone: ###-####" x:Name="instructorNum" Keyboard="Telephone"/>
+
+            <Entry Placeholder="Email: email@mail.com" x:Name="instructorEmail" Keyboard="Email" />
+
+
+            <Label Text="" x:Name="errorlabel"/>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+
+
+</ContentPage>

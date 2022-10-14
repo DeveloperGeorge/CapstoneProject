@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CapstoneProject.Views.OptionalNotePage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save Edits" x:Name="Save_Button" Clicked="Save_Button_Clicked"/>
+        <ToolbarItem Text="Delete Note" x:Name="DeleteNote_Button" Clicked="DeleteNote_Button_Clicked"/>
+        <ToolbarItem Text="Share" x:Name="ShareNote_Button" Clicked="ShareNote_Button_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Entry Placeholder="Note Name" x:Name="NoteName_Entry" FontSize="30" Text="{Binding Note.NoteName}"  />
+                <Editor Placeholder="Note Text" x:Name="NoteDes_Editor" AutoSize="TextChanges" Text="{Binding Note.NoteDes}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
