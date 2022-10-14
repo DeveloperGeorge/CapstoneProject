@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             x:Class="CapstoneProject.Views.ExamPage">
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save Edits" x:Name="Save_Button" Clicked="Save_Button_Clicked"/>
+        <ToolbarItem Text="Delete Assesment" x:Name="DeleteExam_Button" Clicked="DeleteExam_Button_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Padding="10" RowSpacing="10" ColumnSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition  Width="10" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Exam Page" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" FontSize="50" FontAttributes="Bold"/>
+
+                <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Placeholder="Exam Name" x:Name="ExamName_Entry" Text="{Binding Exa.AssessmentName}" FontSize="Large" TextColor="Black"/>
+
+
+                <Label Text="Start" Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Center" HorizontalTextAlignment="End" FontSize="Medium"  />
+                <Label Text="End" Grid.Row="2" Grid.Column="4" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="Medium"  />
+                <Label Text="-" FontSize="Large" Grid.Row="2" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  />
+
+                <DatePicker Grid.Row="2" Grid.Column="1" FontSize="Medium"  x:Name="ExamStart_Picker"  Date="{Binding Exa.Start}">
+                    <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2000</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+
+                <DatePicker Grid.Row="2" Grid.Column="3" FontSize="Medium"  x:Name="ExamEnd_Picker" Date="{Binding Exa.End}">
+                    <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2000</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+
+                <Label Grid.Row="3" Grid.ColumnSpan="5" Text="Notifications" HorizontalTextAlignment="Center"/>
+                <Label  Grid.Row="4" Grid.Column="0" Text="End Date" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                <DatePicker FontSize="Medium" Grid.Row="4" Grid.Column="1" x:Name="DueDateNotification_Picker" VerticalOptions="Center" Date="{x:Static sys:DateTime.Now}">
+                    <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2000</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+                <Button Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Text="Set" x:Name="AddDueDateNotification_Button" Clicked="AddDueDateNotification_Button_Clicked" CornerRadius="10" />
+
+                <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="Center" Text="Question Type:"/>
+                <Picker Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" x:Name="QuestionTypePicker" FontSize="Medium" ItemsSource="{Binding QuestionType}" SelectedItem="{Binding Exa.QuestionTypes}"/>
+                <Label Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Text="Question Count:"/>
+                <Entry Grid.Row="8"  Grid.Column="0" Grid.ColumnSpan="4"  x:Name="QuestionNumEntry" Placeholder="0" Text="{Binding Exa.NumQuestions}" Keyboard="Numeric"/>
+                <Label Grid.Row="9" Grid.ColumnSpan="2" Text="Assessment Info:"/>
+                <Editor Grid.Row="10" Grid.ColumnSpan="5" Placeholder="Click here to start." x:Name="ExamDes_Editor" Text="{Binding Exa.Des}" FontSize="Body" AutoSize="TextChanges"/>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

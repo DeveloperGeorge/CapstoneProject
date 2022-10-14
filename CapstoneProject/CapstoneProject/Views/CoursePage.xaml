@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             x:Class="CapstoneProject.Views.CoursePage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save Edits" x:Name="Save_Button" Clicked="Save_Button_Clicked" />
+        <ToolbarItem Text="Delete Course" x:Name="Delete_Button" Clicked="Delete_Button_Clicked"  />
+        <ToolbarItem Text="Add Note" x:Name="AddNote_Button" Clicked="AddNote_Button_Clicked"  />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Padding="10" RowSpacing="10" ColumnSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="230"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition  Width="10" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Entry Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"  Placeholder="Course Title" FontSize="50" TextColor="Black" Text="{Binding Course.CourseName}" />
+
+                <Picker Grid.Row="1" Grid.ColumnSpan="3"  Title="Status:" ItemsSource="{Binding CourseStatus}" SelectedItem="{Binding Course.Status}"  x:Name="CourseStatusPicker" FontSize="Medium" />
+
+                <Label Text="Start" Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Center" HorizontalTextAlignment="End" FontSize="Medium"  />
+                <Label Text="End" Grid.Row="2" Grid.Column="4" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="Medium"  />
+                <Label Text="-" FontSize="Large" Grid.Row="2" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  />
+
+                <DatePicker Grid.Row="2" Grid.Column="1" FontSize="Medium"  Date="{Binding Course.CourseStart}">
+                    <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2000</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+
+                <DatePicker Grid.Row="2" Grid.Column="3" FontSize="Medium"  Date="{Binding Course.CourseEnd}">
+                    <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2000</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+
+                <Label Grid.Row="3" Grid.ColumnSpan="5" Text="Notifications" HorizontalTextAlignment="Center"/>
+
+                <Label  Grid.Row="4" Grid.Column="0" Text="Start Date" VerticalTextAlignment="Center" HorizontalOptions="Center" />
+                <DatePicker Grid.Row="4" Grid.Column="1" x:Name="StartDateNotification_Picker" VerticalOptions="Center" FontSize="Medium"  Date="{x:Static sys:DateTime.Now}">
+                    <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2000</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+                <Button Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Text="Set" x:Name="AddStartNotification_Button" Clicked="AddStartNotification_Button_Clicked" CornerRadius="10"/>
+
+
+
+                <Label  Grid.Row="5" Grid.Column="0" Text="End Date" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                <DatePicker FontSize="Medium" Grid.Row="5" Grid.Column="1" x:Name="EndDateNotification_Picker" VerticalOptions="Center" Date="{x:Static sys:DateTime.Now}">
+                    <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2000</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+                <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Text="Set" x:Name="AddEndNotification_Button" Clicked="AddEndNotification_Button_Clicked" CornerRadius="10" />
+
+
+                <StackLayout Grid.Row="6" Grid.ColumnSpan="5"  BackgroundColor="LightGray">
+                    <Grid Padding="10" RowSpacing="10" ColumnSpacing="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.ColumnSpan="5" Text="Course Instructor Information"/>
+                        <Label Grid.Row="1" Grid.Column="0" Text="Name:" VerticalOptions="Center" FontSize="Large"/>
+                        <Label Grid.Row="2" Grid.Column="0" Text="Phone:" VerticalOptions="Center" FontSize="Large"/>
+                        <Label Grid.Row="3" Grid.Column="0" Text="Email:" VerticalOptions="Center" FontSize="Large"/>
+                        <Entry Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding Course.CourseInstructor}" />
+                        <Entry Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Keyboard="Telephone"  Placeholder="###-####" Text="{Binding Course.PhoneNum}" />
+                        <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" Keyboard="Email" Placeholder="email@mail.com" Text="{Binding Course.Email}" />
+                    </Grid>
+                </StackLayout>
+
+                <Button Grid.Row="7" Grid.ColumnSpan="2" Grid.Column="0" Text="Add Exam" x:Name="AddExam_Btn"  FontSize="Small" Clicked="AddExam_Btn_Clicked" CornerRadius="10" />
+                <Button  Grid.Row="7" Grid.ColumnSpan="2" Grid.Column="3" Text="Add Project" x:Name="AddProj_Btn" FontSize="Small" Clicked="AddProj_Btn_Clicked" CornerRadius="10" />
+
+
+                <CollectionView Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" x:Name="ExamCollectionView"
+                ItemsSource="{Binding ExamList}"                        
+                        BackgroundColor="LightGray">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10">
+                                <Grid Padding="10">
+                                    <Label Text="{Binding AssessmentName}"                                
+                                            LineBreakMode="NoWrap"   
+                                            VerticalOptions="Center"      
+                                            FontSize="16" />
+                                    <DatePicker Grid.Column="1" Date="{Binding Start}"
+                                            HorizontalOptions="Center"
+                                            IsEnabled="False"  
+                                            FontSize="13" />
+                                    <DatePicker Grid.Column="2" Date="{Binding End}"
+                                            HorizontalOptions="Center"
+                                            IsEnabled="False"
+                                            FontSize="13" />
+                                </Grid>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer  x:Name="Exam_TapGestureRecognizer" NumberOfTapsRequired="1" Tapped="Exam_TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <CollectionView  Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="2" x:Name="ProjectCollectionView"
+                ItemsSource="{Binding ProjectList}"                       
+                        BackgroundColor="LightGray">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10">
+                                <Grid Padding="10">
+                                    <Label Text="{Binding AssessmentName}"                                
+                                            LineBreakMode="NoWrap" 
+                                            VerticalOptions="Center" 
+                                            FontSize="16" />
+                                    <DatePicker Grid.Column="1" Date="{Binding Start}"
+                                            HorizontalOptions="Center"
+                                            IsEnabled="False"  
+                                            FontSize="13" />
+                                    <DatePicker Grid.Column="2" Date="{Binding End}"
+                                            HorizontalOptions="Center"
+                                            IsEnabled="False"
+                                            FontSize="13" />
+                                </Grid>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer  x:Name="Project_TapGestureRecognizer" NumberOfTapsRequired="1" Tapped="Project_TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+                <Label Grid.Row="9" Grid.ColumnSpan="5" HorizontalOptions="Center" Text="Optional Notes"/>
+
+                <CollectionView Grid.Row="10"  Grid.ColumnSpan="5" x:Name="NotesCollectionView"
+                ItemsSource="{Binding NoteList}">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding NoteName}"                                
+                                            LineBreakMode="NoWrap"                               
+                                            FontSize="16" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer  x:Name="Note_TapGestureRecognizer" NumberOfTapsRequired="1" Tapped="Note_TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+
+
+</ContentPage>

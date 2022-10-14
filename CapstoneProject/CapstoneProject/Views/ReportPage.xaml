@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CapstoneProject.Views.ReportPage">
+
+
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="Overview of Terms"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                FontSize="40"
+                TextColor="Black"/>
+
+            <Label Text="Report created on:" FontSize="Large"/>
+            <Label Text="{Binding Today}" FontSize="Large" />
+            
+            
+            <Grid ColumnSpacing="10" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                                       
+                </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Text="Term name" FontSize="20" Padding="5" BackgroundColor="LightGray" TextColor="Black"/>
+            <Label Grid.Row="0" Grid.Column="1" Text="List of courses" FontSize="20" Padding="5" BackgroundColor="LightGray" TextColor="Black"/>
+            </Grid>
+            <CollectionView    x:Name="ReportCollectionView"
+                               ItemsSource="{Binding ReportList}">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate >
+                        <StackLayout Spacing="10" IsEnabled="False" >
+                            <Grid Padding="10" ColumnSpacing="10" RowSpacing="10" HeightRequest="312">
+                                <Grid.ColumnDefinitions>
+                                  
+                                </Grid.ColumnDefinitions>
+
+                                
+                                <Label Grid.Column="0" Text="{Binding TermName}" 
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center"
+                                           BackgroundColor="lightGray"
+                                           LineBreakMode="NoWrap"                                                   
+                                           FontSize="16"/>
+                                
+                                <ListView Grid.Column="1" ItemsSource="{Binding CourseList}"
+                                          BackgroundColor="LightGray" >
+                                </ListView>
+
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

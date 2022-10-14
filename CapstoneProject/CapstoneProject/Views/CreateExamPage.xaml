@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             x:Class="CapstoneProject.Views.CreateExamPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" x:Name="cancelAddExam" Clicked="cancelAddExam_Clicked" />
+        <ToolbarItem Text="Save" x:Name="saveAddExam" Clicked="saveAddExam_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+
+
+
+            <StackLayout Padding="10" Spacing="20">
+                <Entry x:Name="ExamName_Entry" Placeholder="Exam Name"/>
+
+                <Label Text="Start Date"/>
+
+                <DatePicker  FontSize="Medium" x:Name="ExamStart_Picker"  Date="{x:Static sys:DateTime.Now}">
+                    <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2000</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+
+                <Label Text="End Date"/>
+
+                <DatePicker FontSize="Medium" x:Name="ExamEnd_Picker" Date="{x:Static sys:DateTime.Now}">
+                    <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2000</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+
+                <Label Text="Question Type:"/>
+                <Picker x:Name="QuestionTypePicker" Title="Question Type Selector" FontSize="Medium" ItemsSource="{Binding QuestionType}"/>
+                <Label Text="" x:Name="errorlabel" TextColor="Red"/>
+                <Label Text="Question Count:"/>
+                <Entry x:Name="QuestionNumEntry" Placeholder="0" Keyboard="Numeric"/>
+                
+                <Label Text="Assessment Info"/>
+
+                <Editor  Placeholder="Assessment info goes here." x:Name="ExamDes_Editor" AutoSize="TextChanges"/>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             x:Class="CapstoneProject.Views.TermDetailPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save Edits" x:Name="Save_Button" Clicked="Save_Button_Clicked" />
+        <ToolbarItem Text="Delete Term" x:Name= "DeleteTerm" Clicked="DeleteTerm_Clicked" />
+        <ToolbarItem Text="Add Course" x:Name="AddCourseButton" Clicked="AddCourseButton_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <Grid Padding="10" RowSpacing="10" ColumnSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition  Width="10" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Entry x:Name="TermTitle" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"  Text="{Binding Term.TermName}" FontSize="50" TextColor="Black"/>
+
+            <Label Text="Start" Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" HorizontalTextAlignment="End" FontSize="Medium"  />
+            <Label Text="End" Grid.Row="1" Grid.Column="4" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="Medium"  />
+            <Label Text="-" FontSize="Large" Grid.Row="1" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  />
+
+            <DatePicker x:Name="TermStartPicker" Grid.Row="1" Grid.Column="1" FontSize="Medium"   Date="{Binding Term.TermStart}">
+                <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                <DatePicker.MinimumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Jan 1 2000</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Dec 31 2050</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MaximumDate>
+            </DatePicker>
+
+            <DatePicker x:Name="TermEndPicker" Grid.Row="1" Grid.Column="3" FontSize="Medium"  Date="{Binding Term.TermEnd}">
+                <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                <DatePicker.MinimumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Jan 1 2000</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Dec 31 2050</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MaximumDate>
+            </DatePicker>
+
+
+            <CollectionView x:Name="CourseCollectionView"
+                ItemsSource="{Binding CourseList}"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="5">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <Grid Padding="10">
+                                <Label Text="{Binding CourseName}"                                
+                                            LineBreakMode="NoWrap"                               
+                                            FontSize="16" />
+                                <DatePicker Grid.Column="1" Date="{Binding CourseStart}"
+                                            HorizontalOptions="Center"
+                                            IsEnabled="False"  
+                                            FontSize="13" />
+                                <DatePicker Grid.Column="2" Date="{Binding CourseEnd}"
+                                            HorizontalOptions="Center"
+                                            IsEnabled="False"
+                                            FontSize="13" />
+                            </Grid>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
+
+
+</ContentPage>

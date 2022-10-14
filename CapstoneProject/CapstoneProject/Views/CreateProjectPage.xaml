@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             x:Class="CapstoneProject.Views.CreateProjectPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" x:Name="cancelAddProject" Clicked="cancelAddProject_Clicked" />
+        <ToolbarItem Text="Save" x:Name="saveAddProject" Clicked="saveAddProject_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+
+
+
+            <StackLayout Padding="10" Spacing="20">
+                <Entry x:Name="ProjectName_Entry" Placeholder="Project Name"/>
+
+                <Label Text="Start Date"/>
+
+                <DatePicker  FontSize="Medium" x:Name="ProjectStart_Picker"  Date="{x:Static sys:DateTime.Now}">
+                    <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2000</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+
+                <Label Text="End Date"/>
+
+                <DatePicker FontSize="Medium" x:Name="ProjectEnd_Picker" Date="{x:Static sys:DateTime.Now}">
+                    <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2000</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+
+                <Label Text="Project Type:"/>
+                <Picker x:Name="ProjectTypePicker" Title="Project Type Selector" FontSize="Medium" ItemsSource="{Binding ProjectTypeList}"/>
+                <Label Text="" x:Name="errorlabel1" TextColor="Red"/>
+                <Label Text="Participant Count:"/>
+                <Picker x:Name="ParticipantCountPicker" Title="Participant Count Selector" FontSize="Medium" ItemsSource="{Binding ParticipantNumList}"/>
+                <Label Text="" x:Name="errorlabel2" TextColor="Red"/>
+
+                <Label Text="Assessment Info"/>
+
+                <Editor  Placeholder="Assessment info goes here." x:Name="ProjectDes_Editor" AutoSize="TextChanges"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>
